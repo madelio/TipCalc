@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2117F2861E06F59C00815A5D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117F2851E06F59C00815A5D /* SettingsViewController.swift */; };
 		21EC0EA31DFF944B007754D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EC0EA21DFF944B007754D6 /* AppDelegate.swift */; };
 		21EC0EA51DFF944B007754D6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EC0EA41DFF944B007754D6 /* ViewController.swift */; };
 		21EC0EA81DFF944B007754D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21EC0EA61DFF944B007754D6 /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2117F2851E06F59C00815A5D /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		21EC0E9F1DFF944B007754D6 /* Tipper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tipper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21EC0EA21DFF944B007754D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21EC0EA41DFF944B007754D6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 		21EC0E961DFF944A007754D6 = {
 			isa = PBXGroup;
 			children = (
+				2117F2851E06F59C00815A5D /* SettingsViewController.swift */,
 				21EC0EA11DFF944B007754D6 /* Tipper */,
 				21EC0EB61DFF944B007754D6 /* TipperTests */,
 				21EC0EC11DFF944B007754D6 /* TipperUITests */,
@@ -188,7 +191,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Madel Asistio";
 				TargetAttributes = {
 					21EC0E9E1DFF944A007754D6 = {
@@ -263,6 +266,7 @@
 			files = (
 				21EC0EA51DFF944B007754D6 /* ViewController.swift in Sources */,
 				21EC0EA31DFF944B007754D6 /* AppDelegate.swift in Sources */,
+				2117F2861E06F59C00815A5D /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +339,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -384,6 +389,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
