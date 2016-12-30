@@ -120,7 +120,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="774" y="-205"/>
+            <point key="canvasLocation" x="1025" y="-274"/>
         </scene>
         <!--Settings-->
         <scene sceneID="guI-Oy-N2a">
@@ -223,7 +223,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1666" y="-233"/>
+            <point key="canvasLocation" x="1496" y="-273"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QXR-37-xfb">

@@ -32,6 +32,10 @@ class ViewController: UIViewController {
     // changes the button labels to proper values
     // on the segment control every time it appears
     override func viewWillAppear(_ animated: Bool) {
+        
+        // makes it so that the keypad is visible from the start
+        billField.becomeFirstResponder()
+        
         var counter = 0
         
         // loops through the tip array and changes the segment control labels to settings
