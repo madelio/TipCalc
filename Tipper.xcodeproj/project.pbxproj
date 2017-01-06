@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2117F2861E06F59C00815A5D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117F2851E06F59C00815A5D /* SettingsViewController.swift */; };
+		214461D11E19DE470007BA29 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214461D01E19DE470007BA29 /* SettingsVC.swift */; };
+		21C9A3041E1F1109000B4151 /* RegionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C9A3031E1F1109000B4151 /* RegionsVC.swift */; };
 		21EC0EA31DFF944B007754D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EC0EA21DFF944B007754D6 /* AppDelegate.swift */; };
 		21EC0EA51DFF944B007754D6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EC0EA41DFF944B007754D6 /* ViewController.swift */; };
 		21EC0EA81DFF944B007754D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21EC0EA61DFF944B007754D6 /* Main.storyboard */; };
@@ -36,6 +38,8 @@
 
 /* Begin PBXFileReference section */
 		2117F2851E06F59C00815A5D /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		214461D01E19DE470007BA29 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsVC.swift; path = Tipper/SettingsVC.swift; sourceTree = "<group>"; };
+		21C9A3031E1F1109000B4151 /* RegionsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionsVC.swift; sourceTree = "<group>"; };
 		21EC0E9F1DFF944B007754D6 /* Tipper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tipper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21EC0EA21DFF944B007754D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21EC0EA41DFF944B007754D6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +83,8 @@
 		21EC0E961DFF944A007754D6 = {
 			isa = PBXGroup;
 			children = (
+				21C9A3031E1F1109000B4151 /* RegionsVC.swift */,
+				214461D01E19DE470007BA29 /* SettingsVC.swift */,
 				2117F2851E06F59C00815A5D /* SettingsViewController.swift */,
 				21EC0EA11DFF944B007754D6 /* Tipper */,
 				21EC0EB61DFF944B007754D6 /* TipperTests */,
@@ -265,6 +271,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				21EC0EA51DFF944B007754D6 /* ViewController.swift in Sources */,
+				214461D11E19DE470007BA29 /* SettingsVC.swift in Sources */,
+				21C9A3041E1F1109000B4151 /* RegionsVC.swift in Sources */,
 				21EC0EA31DFF944B007754D6 /* AppDelegate.swift in Sources */,
 				2117F2861E06F59C00815A5D /* SettingsViewController.swift in Sources */,
 			);

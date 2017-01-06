@@ -9,7 +9,9 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+    let formatter = NumberFormatter()
+    let defaults = UserDefaults.standard
+
     // label that shows the tip
     @IBOutlet weak var tipLabel: UILabel!
     
@@ -35,16 +37,27 @@ class ViewController: UIViewController {
         
         // makes it so that the keypad is visible from the start
         billField.becomeFirstResponder()
-        
-        var counter = 0
+
+        var defVals = [0.14, 0.16, 0.18, 0.20]
+        var index = 0
         
         // loops through the tip array and changes the segment control labels to settings
-        for percent in tipPercentages {
-            tipController.setTitle(String(format: "%.0f%%", percent * 100), forSegmentAt: counter)
+        while (index < 4) {
             
-            counter += 1
+            if defaults.double(forKey: "bttn\(index + 1)") == 0 {
+                tipPercentages[index] = defVals[index]
+            } else {
+                tipPercentages[index] = defaults.double(forKey: "bttn\(index + 1)")
+            }
+            
+            tipController.setTitle(String(format: "%.0f%%", tipPercentages[index] * 100), forSegmentAt: index)
+            
+            index += 1
             
         }
+        
+        self.calculateTip(UIButton())
+
     }
     
     override func viewDidLoad() {
@@ -80,21 +93,35 @@ class ViewController: UIViewController {
         let tip = bill * tipPercentages[tipController.selectedSegmentIndex]
         let total = bill + tip
         
+        let formatted = chgFormat (tipVal: tip, totalVal: total)
+        
         // puts the correct value on the tip and total labels
-        tipLabel.text = String(format:"$%.02f", tip)
-        totalLabel.text = String(format:"$%.02f",total)
+        tipLabel.text = formatted.tipFormatted
+        totalLabel.text = formatted.totalFormatted
     }
     
-    // inputs the settings view controller with the values from the tip percentages
+    func chgFormat (tipVal: Double, totalVal: Double) -> (tipFormatted: String, totalFormatted: String) {
+ 
+        let tip = tipVal as NSNumber
+        let total = totalVal as NSNumber
+    
+        formatter.numberStyle = .currency
+        formatter.locale = Locale(identifier: defaults.string(forKey: "region") ?? "United States")
+        return (formatter.string(from: tip)!, formatter.string(from:total)!)
+    }
+    
+    // inputs the settings view controller with the values from the tip percentages 
+    /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "settingsSegue" {
             if let settingsVC = segue.destination as? SettingsViewController {
                 settingsVC.percentages = tipPercentages
             }
         }
-    }
+    } */
     
     // changes the values depending on user input in settings
+    /*
     @IBAction func updateFromSettings (segue:UIStoryboardSegue) {
         
         // instantiates the settings view controller
@@ -106,6 +133,6 @@ class ViewController: UIViewController {
         tipPercentages[2] = (Double(settingsVC.bttn3Field.text!) ?? 0) * shiftDec
         tipPercentages[3] = (Double(settingsVC.bttn4Field.text!) ?? 0) * shiftDec
 
-    }
+    } */
    }
 
