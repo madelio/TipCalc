@@ -27,6 +27,9 @@ class SettingsVC: UITableViewController {
     let numberOfRowsAtSection: [Int] = [1, 4, 1]
     
     let defVals = [0.14, 0.16, 0.18, 0.20]
+    var regText = ""
+    
+    var resetReg = false
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -46,7 +49,10 @@ class SettingsVC: UITableViewController {
             index += 1
         }
         
-        regionLabel.text = defaults.string(forKey: "region") ?? "United States"
+        regText = defaults.string(forKey: "region") ?? "en_US"
+        
+        regionLabel.text = NSLocale (localeIdentifier: regText).displayName(forKey: NSLocale.Key.identifier, value: regText)
+
     }
     
     override func viewDidLoad() {
@@ -55,26 +61,21 @@ class SettingsVC: UITableViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(SettingsVC.hideKeyboard))
         tapGesture.cancelsTouchesInView = false
         tableView.addGestureRecognizer(tapGesture)
-
-        // Uncomment the following line to preserve selection between presentations
-        //self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 3
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         var rows = 0
@@ -84,7 +85,7 @@ class SettingsVC: UITableViewController {
         
         return rows
     }
-
+    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -94,14 +95,14 @@ class SettingsVC: UITableViewController {
         if section == 1 {
             
             switch row {
-            
+                
             case 0: bttn1.becomeFirstResponder()
             case 1: bttn2.becomeFirstResponder()
             case 2: bttn3.becomeFirstResponder()
             case 3: bttn4.becomeFirstResponder()
-            
+                
             default: break
-         
+                
             }
             
         } else if section == 2 {
@@ -117,73 +118,23 @@ class SettingsVC: UITableViewController {
         let buttons = [bttn1, bttn2, bttn3, bttn4]
         
         for index in 0...3 {
-            defaults.set(defVals[index], forKey: "bttn\(index)")
+
             buttons[index]?.text = String (format: "%.0f",defVals[index] * shiftDecFwd)
         }
-
+        
+        regionLabel.text = "English (United States"
+        
+        defaults.set("en_US", forKey: "region")
+        defaults.set(0, forKey: "lastChecked")
+        
         defaults.synchronize()
     }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath)
-
-        // Configure the cell...
-       // cell.selectionStyle = .none // to not gray out?
-
-        return cell
-    }*/
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     func hideKeyboard() {
         tableView.endEditing(true)
     }
-
+    
     @IBAction func saveChanges(_ sender: Any) {
         
         let buttons = [bttn1, bttn2, bttn3, bttn4]
@@ -191,8 +142,12 @@ class SettingsVC: UITableViewController {
         for index in 0...3 {
             defaults.set((Double ((buttons[index]?.text!)!) ?? 0) * shiftDecBack, forKey: "bttn\(index+1)")
         }
-            defaults.synchronize()
+        defaults.set(defaults.string(forKey: "region") ?? "en_US", forKey: "updatedRegion")
+        
+        defaults.set(defaults.integer(forKey: "lastChecked"), forKey: "updateCheck")
+        
+        defaults.synchronize()
         
         _ = self.navigationController?.popViewController(animated: true)
     }
-   }
+}

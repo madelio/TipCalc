@@ -106,33 +106,22 @@ class ViewController: UIViewController {
         let total = totalVal as NSNumber
     
         formatter.numberStyle = .currency
-        formatter.locale = Locale(identifier: defaults.string(forKey: "region") ?? "United States")
+        formatter.locale = Locale(identifier: defaults.string(forKey: "updatedRegion") ?? "United States")
         return (formatter.string(from: tip)!, formatter.string(from:total)!)
     }
     
     // inputs the settings view controller with the values from the tip percentages 
-    /*
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "settingsSegue" {
-            if let settingsVC = segue.destination as? SettingsViewController {
-                settingsVC.percentages = tipPercentages
-            }
-        }
-    } */
     
-    // changes the values depending on user input in settings
-    /*
-    @IBAction func updateFromSettings (segue:UIStoryboardSegue) {
-        
-        // instantiates the settings view controller
-        let settingsVC = segue.source as! SettingsViewController
-        
-        // changes the tip percentages depending on the value of the button fields
-        tipPercentages[0] = (Double(settingsVC.bttn1Field.text!) ?? 0) * shiftDec
-        tipPercentages[1] = (Double(settingsVC.bttn2Field.text!) ?? 0) * shiftDec
-        tipPercentages[2] = (Double(settingsVC.bttn3Field.text!) ?? 0) * shiftDec
-        tipPercentages[3] = (Double(settingsVC.bttn4Field.text!) ?? 0) * shiftDec
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "settingVCSeg" {
+                
+                defaults.set(defaults.string(forKey: "updatedRegion") ?? "en_US", forKey: "region")
+            
+                defaults.set(defaults.integer(forKey: "updateCheck"), forKey: "lastChecked")
+            
+                defaults.synchronize()
 
-    } */
-   }
+        }
+    }
+}
 

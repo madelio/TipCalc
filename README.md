@@ -24,12 +24,13 @@ The following **additional** features are implemented:
 
 * Added a different interface than the sample
 * Added an extra segment button
+* Added a reset defaults button
 
 ## Video Walkthrough 
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://gifyu.com/images/tipperGif.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://gifyu.com/images/tipperGif5.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 

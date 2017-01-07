@@ -11,17 +11,26 @@ import UIKit
 class RegionsVC: UITableViewController {
     
     let defaults = UserDefaults.standard
+    
+    var lastSelected: IndexPath = [0,0]
+    
+    var initIndPath: IndexPath = [0,0]
 
     let regionType = ["en_US", "en_CA", "en_GB", "en_AU", "fr_FR", "ja_JP", "zh", "fil"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        tableView.reloadData()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        initIndPath = [0, defaults.integer(forKey: "lastChecked")]
+        
+        tableView.cellForRow(at: initIndPath)?.accessoryType = .checkmark
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,90 +51,33 @@ class RegionsVC: UITableViewController {
         return regionType.count
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let row = indexPath.row
-        
-        defaults.set(regionType[row], forKey: "region")
-    }
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.cellForRow(at: indexPath)
-        let identifiers : NSArray = NSLocale.preferredLanguages as NSArray
-        let locale = NSLocale(localeIdentifier: "en_US")
-        var list = [[String]]()
-        
-        for identifier in identifiers {
-            let name = locale.displayName(forKey: NSLocale.Key.identifier, value: identifier)!
-            list.append([identifier as! String, name])
-            
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+
+
+        if initIndPath != indexPath {
+            tableView.cellForRow(at: initIndPath)?.accessoryType = .none
         }
         
-       /* for index in 0..<10 {
-         
-            
-            
-        } */
+        if lastSelected != indexPath {
+            tableView.cellForRow(at: lastSelected)?.accessoryType = .none
+
+        }
         
-        cellCount = list.count
+        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
         
-        return cell!
-    } */
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+        defaults.set(indexPath.row, forKey: "lastChecked")
+        
+        return indexPath
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        lastSelected = indexPath
+        
+        let row = indexPath.row
+        defaults.set(regionType[row], forKey: "region")
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
